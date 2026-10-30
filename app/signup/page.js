@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
@@ -36,7 +37,7 @@ export default async function SignupPage({ searchParams }) {
     <main>
       <h1>Sign up</h1>
 
-      {error && <p className="form-error">Could not create the user. Please try again.</p>}
+      {error && <p className="form-error" role="alert">Could not create the user. Please try again.</p>}
 
       <form className="auth-form" action={signUp}>
         <label htmlFor="email">Email</label>
@@ -55,6 +56,10 @@ export default async function SignupPage({ searchParams }) {
 
         <button type="submit">Sign up</button>
       </form>
+
+      <p>
+        Already have an account? <Link href="/login">Log in</Link>
+      </p>
     </main>
   );
 }
